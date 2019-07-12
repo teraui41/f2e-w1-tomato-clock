@@ -3,14 +3,14 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import './index.css';
-import App from './App';
+import AppContainer from './containers/AppContainer';
 import configureStore from "./store/configureStore";
 
 const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById("root")
 );
