@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import Menu from './containers/MenuContainer';
+import ClockContainer from './containers/ClockContainer';
+import 'font-awesome/css/font-awesome.min.css';
 
 const Container = styled.div`
-  background-color: #141426;
+  background-color: #181b44;
   height: 100vh;
   width: 100vw;
   display: flex;  
@@ -12,11 +15,12 @@ const Container = styled.div`
 
 const Panel = styled.div`
   position: relative;
+  display: flex;
   width: 100%;
   height: 100%;
   max-width: 1080px;
   max-height: 680px;
-  background-color: #222648;
+  background-color: #242962;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.46);
 
   &::before {
@@ -24,25 +28,27 @@ const Panel = styled.div`
     position: absolute;
     width: 100%;
     height: 50%;
-    background-color: #1c203f;
+    background-color: #1e2253;
     bottom: 0px;
+    z-index: 1;
   }
 `
 
-const Menu = styled.div`
+const Content = styled.div`
+  flex: 5.5;
+  z-index: 1;
 `
 
-const MenuItem = styled.div`
-`
+const App = props => {
 
-const App = () => {
+  const { activeId } = props; 
   return (
     <Container>
-      <Menu>
-        <MenuItem/>
-      </Menu>
       <Panel>
-
+      <Menu activeId={activeId}/>
+      <Content>
+        <ClockContainer />
+      </Content>
       </Panel>
     </Container>
   )

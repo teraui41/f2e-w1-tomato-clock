@@ -1,6 +1,7 @@
 
 export const layoutState = {
-  
+  activeId: 'clock',
+  timeType: 'day'
 }
 
 export const clockState = {

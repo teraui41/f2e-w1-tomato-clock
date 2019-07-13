@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import App from '../App';
 
-const mapStateToProps = ({ clock, report, todoList }) => ({
-
+const mapStateToProps = ({ layout, clock, report, todoList }) => ({
+  activeId: layout.activeId
 })
 
 const mapDispatchToProps = dispatch => ({

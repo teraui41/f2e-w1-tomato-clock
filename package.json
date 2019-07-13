@@ -4,6 +4,7 @@
   "private": true,
   "author": "Edmond.Wu, Shih-yu.Wu",
   "dependencies": {
+    "font-awesome": "^4.7.0",
     "lodash": "^4.17.14",
     "moment": "^2.24.0",
     "react": "^16.8.6",
