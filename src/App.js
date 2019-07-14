@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import 'font-awesome/css/font-awesome.min.css';
 import Menu from './containers/MenuContainer';
 import ClockContainer from './containers/ClockContainer';
-import 'font-awesome/css/font-awesome.min.css';
+import ReportContainer from './containers/ReportContainer';
+import TodoListContainer from './containers/TodoListContainer';
+
+const ID_MAP = ['clock', 'todos', 'report'];
 
 const Container = styled.div`
   background-color: #181b44;
@@ -37,21 +41,42 @@ const Panel = styled.div`
 const Content = styled.div`
   flex: 5.5;
   z-index: 1;
+  position: relative;
+  overflow: hidden;
+
+`
+
+const ContentSelector = styled.div`
+  position: relative;
+  height: 100%;
+  margin-top: -${({ selectedIndex }) => selectedIndex * 680 }px;
+  transition: margin-top .8s ease;
 `
 
 const App = props => {
 
-  const { activeId } = props; 
+  const { activeId, setActiveId } = props;
+
+  const selectedIndex = ID_MAP.indexOf(activeId);
+
   return (
     <Container>
       <Panel>
-      <Menu activeId={activeId}/>
-      <Content>
-        <ClockContainer />
-      </Content>
+        <Menu activeId={activeId} setActiveId={setActiveId}/>
+        <Content>
+          <ContentSelector selectedIndex={selectedIndex}>
+            <ClockContainer />
+            <TodoListContainer />
+            <ReportContainer />
+          </ContentSelector>
+        </Content>
       </Panel>
-    </Container>
+    </Container >
   )
+}
+
+App.propTypes = {
+
 }
 
 export default App;

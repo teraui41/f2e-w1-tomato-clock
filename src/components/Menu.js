@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Icon from './Icon';
 import { Colors } from '../constants/colors.config'
 
-const innerMenuItem = ({ className, text, icon, onClick }) =>
-  <span className={className} onClick={onClick}>
+const innerMenuItem = ({ className, text, icon, ...props }) =>
+  <span className={className} {...props}>
     <Icon icon={icon}/>
     <span>{text}</span>
   </span>;
@@ -45,14 +45,19 @@ const MenuBox = styled.div`
 `
 
 class Menu extends React.PureComponent {
+
+  onClick = ({ currentTarget: { id}}) => {
+    this.props.setActiveId(id);
+  }
+
   render() {
     const { activeId } = this.props;
 
     return (
       <MenuBox>
-        <MenuItem id='clock' icon='clock-o' text='TOMATO' activeId={activeId}/>
-        <MenuItem id='todolist' icon='list-ul' text='TODO LIST' activeId={activeId}/>
-        <MenuItem id='analytics' icon='bar-chart' text='ANALYTICS' activeId={activeId}/>
+        <MenuItem id='clock' icon='clock-o' text='TOMATO' activeId={activeId} onClick={this.onClick}/>
+        <MenuItem id='todos' icon='list-ul' text='TODO LIST' activeId={activeId}  onClick={this.onClick}/>
+        <MenuItem id='report' icon='bar-chart' text='ANALYTICS' activeId={activeId}  onClick={this.onClick}/>
       </MenuBox>
     )
   }
