@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ContentContainer from "../../components/ContentContainer";
+import ToDoItem from './ToDoItem'
 
 const ToDoContainer = styled.div`
   height: 50%;
@@ -23,7 +24,7 @@ const PanelTitle = styled.div`
   font-weight: bold;
   letter-space: 2ox;
   color: #fff;
-  padding-left: 20px;
+  padding-left: 15px;
   margin: auto;
 `;
 
@@ -36,11 +37,17 @@ class ToDoListScreen extends React.PureComponent {
         <ToDoContainer>
           <Panel>
             <PanelTitle>To-Do</PanelTitle>
+            <ToDoItem content={'kdahfkd'} />
+            <ToDoItem content={'kdahfkd'} />
+            <ToDoItem content={'kdahfkd'} />
           </Panel>
         </ToDoContainer>
         <ToDoContainer>
           <Panel>
             <PanelTitle>Done</PanelTitle>
+            <ToDoItem isDone content={'kdahfkd'} />
+            <ToDoItem isDone content={'kdahfkd'} />
+            <ToDoItem isDone content={'kdahfkd'} />
           </Panel>
         </ToDoContainer>
       </ContentContainer>

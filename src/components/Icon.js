@@ -1,6 +1,11 @@
 import React from 'react';
 
-const Icon = ({ icon, ...props }) => 
-  <i {...props} className={`fa fa-${icon}`} />
+const Icon = ({ icon, hide, ...props }) => {
+
+  if(hide) return null;
+
+  return <i {...props} className={`fa fa-${icon}`} />
+}
+
 
 export default Icon;

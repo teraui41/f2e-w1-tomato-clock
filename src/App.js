@@ -5,10 +5,13 @@ import Menu from './containers/MenuContainer';
 import ClockContainer from './containers/ClockContainer';
 import ReportContainer from './containers/ReportContainer';
 import TodoListContainer from './containers/TodoListContainer';
+import { Colors } from './constants/colors.config';
+import TodoSelector from './components/TodoSelector';
 
 const ID_MAP = ['clock', 'todos', 'report'];
 
 const Container = styled.div`
+font-family: 'Quicksand', sans-serif;
   background-color: #181b44;
   height: 100vh;
   width: 100vw;
@@ -39,7 +42,7 @@ const Panel = styled.div`
 `
 
 const Content = styled.div`
-  flex: 5.5;
+  flex: 5.6;
   z-index: 1;
   position: relative;
   overflow: hidden;
@@ -49,9 +52,28 @@ const Content = styled.div`
 const ContentSelector = styled.div`
   position: relative;
   height: 100%;
-  margin-top: -${({ selectedIndex }) => selectedIndex * 680 }px;
+  margin-top: -${({ selectedIndex }) => selectedIndex * 680}px;
   transition: margin-top .8s ease;
 `
+
+const ControlPanel = styled.div`
+flex: 3;
+z-index: 1;
+position: relative;
+`
+
+const Motto = styled.div`
+  margin-left: 50px;
+    font-size: 1.3rem;
+    background-image: linear-gradient(45deg, ${Colors.dayPrimary.darker}, ${Colors.dayPrimary.lighter});
+    color: #fff;
+    padding: 8px 15px;
+    line-height: 24px;
+    margin-top: -20px;
+    letter-spacing: 2px;
+    width: 250px;
+  
+`;
 
 const App = props => {
 
@@ -62,7 +84,11 @@ const App = props => {
   return (
     <Container>
       <Panel>
-        <Menu activeId={activeId} setActiveId={setActiveId}/>
+        <ControlPanel>
+          <Menu activeId={activeId} setActiveId={setActiveId} />
+          <Motto>Work hard, play hard.</Motto>
+          <TodoSelector />
+        </ControlPanel>
         <Content>
           <ContentSelector selectedIndex={selectedIndex}>
             <ClockContainer />
