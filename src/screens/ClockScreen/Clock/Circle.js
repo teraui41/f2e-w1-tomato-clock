@@ -8,10 +8,10 @@ const CircleContainer = styled.div`
   height: 100%;
 `
 
-const GREDIENT_MAP = {
-  dayGredient: { start: Colors.dayCircle.lighter, stop: Colors.dayCircle.darker },
-  eveningGredient: { start: Colors.eveningCircle.lighter, stop: Colors.eveningCircle.darker },
-  nightGredient: { start: Colors.nightCircle.lighter, stop: Colors.nightCircle.darker }
+const Gradient_MAP = {
+  dayGradient: { start: Colors.dayCircle.lighter, stop: Colors.dayCircle.darker },
+  eveningGradient: { start: Colors.eveningCircle.lighter, stop: Colors.eveningCircle.darker },
+  nightGradient: { start: Colors.nightCircle.lighter, stop: Colors.nightCircle.darker }
 }
 
 class Circle extends React.PureComponent {
@@ -19,18 +19,18 @@ class Circle extends React.PureComponent {
   static propTypes = {
     valueRadio: propTypes.number,
     circleType: propTypes.oneOf([
-      'dayGredient', 'eveningGredient', 'nightGredient'
+      'dayGradient', 'eveningGradient', 'nightGradient'
     ])
   }
 
   static defaultProps = {
     valueRadio: 0,
-    circleType: 'dayGredient'
+    circleType: 'dayGradient'
   }
 
   render() {
     const { circleType, valueRadio } = this.props;
-    const gredient = GREDIENT_MAP[circleType];
+    const Gradient = Gradient_MAP[circleType];
 
 
     const diameter = Math.PI * 2 * 200;
@@ -41,13 +41,12 @@ class Circle extends React.PureComponent {
         <svg height="100%" width="100%">
           <defs>
             <linearGradient id="gradient" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor={gredient.stop} style={{transition: '5s ease'}}/>
-              <stop offset="100%" stopColor={gredient.start} style={{transition: '5s ease'}}/>
+              <stop offset="0%" stopColor={Gradient.stop} style={{transition: '5s ease'}}/>
+              <stop offset="100%" stopColor={Gradient.start} style={{transition: '5s ease'}}/>
             </linearGradient>
           </defs>
           <circle
-            cx="250" cy="280" r="200" strokeWidth="25" fill="none" />
-
+            cx="254" cy="330" r="200" stroke="rgba(255,255,255, 0.1)" strokeWidth="28" fill="none" />
           <path
             d={`
             M 255, 130
@@ -62,7 +61,7 @@ class Circle extends React.PureComponent {
               transition: 'all 1s ease'
             }}
 
-            stroke="url(#gradient)" strokeWidth="25" fill="none"
+            stroke="url(#gradient)" strokeWidth="28" fill="none"
           />
           <path
            d={`
@@ -78,7 +77,7 @@ class Circle extends React.PureComponent {
              transition: 'stroke-dashoffset 1s ease 0s'
            }}
 
-           stroke="#fff" strokeWidth="40" fill="none"
+           stroke="#fff" strokeWidth="42" fill="none"
          />
         </svg>
       </CircleContainer>

@@ -10,6 +10,7 @@ const innerMenuItem = ({ className, text, icon, ...props }) =>
   </span>;
 
 const activeStyle = `
+  font-size: 1.4rem;
   color: ${Colors.dayPrimary.main};
 `
 
