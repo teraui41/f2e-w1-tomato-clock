@@ -1,7 +1,7 @@
 import ToDoList from '../screens/ToDoListScreen';
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ todos }) => ({
+const mapStateToProps = ({ todoList }) => ({
   
 });
 

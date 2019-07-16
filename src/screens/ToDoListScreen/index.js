@@ -9,7 +9,7 @@ class ToDoListScreen extends React.PureComponent {
     const { activeId } = this.props;
 
     return (
-      <ContentContainer contentId='todos' activeId={activeId}>
+      <ContentContainer contentId='todo' activeId={activeId}>
         <DataContainer>
           <Panel>
             <PanelTitle>To-Do</PanelTitle>

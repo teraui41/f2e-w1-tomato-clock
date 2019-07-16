@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Scenery from './Scenery';
 import ClockCircle from './Clock';
+import TomatoCap from './TomatoCap';
 import ClockControl from './ClockControl';
 import { ContentContainer } from '../../components/Containers'
 
@@ -39,14 +40,15 @@ class ClockScreen extends React.PureComponent {
   }
 
   render() {
-    const { activeId } = this.props;
-    const { valueRadio, circleType } = this.state;
+    const { activeId, period } = this.props;
+    const { valueRadio } = this.state;
 
     return (
       <ContentContainer contentId='clock' activeId={activeId}>
-        <Scenery />
-        <ClockCircle valueRadio={valueRadio} circleType={circleType}/>
-        <ClockControl circleType={circleType}/>
+        <Scenery period={period}/>
+        <ClockCircle valueRadio={valueRadio} period={period}/>
+        <ClockControl period={period}/>
+        <TomatoCap />
       </ContentContainer>
     )
   }

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'; 
 import Menu from '../components/Menu';
 
-const mapStateToProps = ({ layout }) => ({
-
+const mapStateToProps = ({ layout, todoList }) => ({
+  todoList: todoList.get('todoList')
 });
 
 const mapDispatchToProps = dispatch => ({

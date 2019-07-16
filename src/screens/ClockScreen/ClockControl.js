@@ -68,7 +68,7 @@ class ClockControl extends React.PureComponent {
     const {
       active,
       currentTime: time,
-      circleType,
+      period,
       todoText = "The first thing to do today."
     } = this.props;
 
@@ -79,7 +79,7 @@ class ClockControl extends React.PureComponent {
         <BellIcon active={active} />
         <TimeCounter>{currentTime}</TimeCounter>
         <TodoInfo>{todoText}</TodoInfo>
-        <PlayButton circleType={circleType} />
+        <PlayButton period={period} />
         <CancelButton>Cancel</CancelButton>
       </div>
     );

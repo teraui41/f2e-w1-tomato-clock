@@ -21,10 +21,10 @@ class ClockCircle extends React.PureComponent {
 
 
   render() {
-    const { valueRadio, circleType } = this.props;
+    const { valueRadio, period } = this.props;
     return (
       <ClockCircleContainer>
-        <Circle valueRadio={valueRadio} circleType={circleType}/>
+        <Circle valueRadio={valueRadio} period={period}/>
       </ClockCircleContainer>
     )
   }

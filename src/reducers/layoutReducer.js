@@ -1,10 +1,10 @@
+import types from '../constants/actionTypes';
 import { layoutState } from './initState';
 
 export default function reducer(layout = layoutState, {type, payload}) {
   switch (type) {
-    case 'SET_ACTIVE_ID':
-      const activeId = payload;
-      return { ...layout ,activeId };
+    case types.SET_ACTIVE_ID:
+      return layout.merge({ activeId: payload });
     default:
       return layout
   }

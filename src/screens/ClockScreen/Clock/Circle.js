@@ -9,9 +9,9 @@ const CircleContainer = styled.div`
 `
 
 const Gradient_MAP = {
-  dayGradient: { start: Colors.dayCircle.lighter, stop: Colors.dayCircle.darker },
-  eveningGradient: { start: Colors.eveningCircle.lighter, stop: Colors.eveningCircle.darker },
-  nightGradient: { start: Colors.nightCircle.lighter, stop: Colors.nightCircle.darker }
+  day: { start: Colors.day.circle.lighter, stop: Colors.day.circle.darker },
+  evening: { start: Colors.evening.circle.lighter, stop: Colors.evening.circle.darker },
+  night: { start: Colors.night.circle.lighter, stop: Colors.night.circle.darker }
 }
 
 class Circle extends React.PureComponent {
@@ -29,8 +29,8 @@ class Circle extends React.PureComponent {
   }
 
   render() {
-    const { circleType, valueRadio } = this.props;
-    const Gradient = Gradient_MAP[circleType];
+    const { period, valueRadio } = this.props;
+    const Gradient = Gradient_MAP[period];
 
 
     const diameter = Math.PI * 2 * 200;

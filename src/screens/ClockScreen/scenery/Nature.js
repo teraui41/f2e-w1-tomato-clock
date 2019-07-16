@@ -16,8 +16,8 @@ export const Wave1 = ({ ...props }) => {
   return (
     <SVG>
       <path fill='rgba(255,255,255,0.18)'>
-        <animate id="anim1" begin="0s;anim2.end" attributeType="XML" attributeName='d' dur="5s" from={WAVE_1} to={WAVE_2} />
-        <animate id="anim2" begin="anim1.end" attributeType="XML" attributeName='d' dur="5s" from={WAVE_2} to={WAVE_1} />
+        <animate id="anim11" begin="0s;anim12.end" attributeType="XML" attributeName='d' dur="5s" from={WAVE_1} to={WAVE_2} />
+        <animate id="anim12" begin="anim11.end" attributeType="XML" attributeName='d' dur="4s" from={WAVE_2} to={WAVE_1} />
       </path>
     </SVG>
   );
@@ -27,8 +27,8 @@ export const Wave2 = ({ ...props }) => {
   return (
     <SVG style={{marginTop: 20}}>
       <path fill='rgba(255,255,255,0.18)'>
-        <animate id="anim1" begin="0s;anim2.end" attributeType="XML" attributeName='d' dur="5s" from={WAVE_2} to={WAVE_1} />
-        <animate id="anim2" begin="anim1.end" attributeType="XML" attributeName='d' dur="5s" from={WAVE_1} to={WAVE_2} />
+        <animate id="anim21" begin="0s;anim22.end" attributeType="XML" attributeName='d' dur="6s" from={WAVE_2} to={WAVE_1} />
+        <animate id="anim22" begin="anim21.end" attributeType="XML" attributeName='d' dur="4s" from={WAVE_1} to={WAVE_2} />
       </path>
     </SVG>
   );

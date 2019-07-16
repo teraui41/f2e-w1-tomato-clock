@@ -3,7 +3,11 @@ import App from '../App';
 import { SetActiveIdAction } from '../actions/layoutActions';
 
 const mapStateToProps = ({ layout, clock, report, todoList }) => ({
-  activeId: layout.activeId
+  period: layout.get('period'),
+  activeId: layout.get('activeId'),
+  timeType: layout.get('timeType'),
+  todoList: todoList.get('todoList'),
+  selectedId: todoList.get('selectedId')
 })
 
 const mapDispatchToProps = dispatch => ({

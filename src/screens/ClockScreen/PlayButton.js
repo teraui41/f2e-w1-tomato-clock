@@ -4,17 +4,17 @@ import propTypes from "prop-types";
 import { Colors } from "../../constants/colors.config";
 
 const Gradient_MAP = {
-  dayGradient: {
-    start: Colors.dayCircle.darker,
-    stop: Colors.dayCircle.lighter
+  day: {
+    start: Colors.day.circle.darker,
+    stop: Colors.day.circle.lighter
   },
-  eveningGradient: {
-    start: Colors.eveningCircle.darker,
-    stop: Colors.eveningCircle.lighter
+  evening: {
+    start: Colors.evening.circle.darker,
+    stop: Colors.evening.circle.lighter
   },
-  nightGradient: {
-    start: Colors.nightCircle.darker,
-    stop: Colors.nightCircle.lighter
+  night: {
+    start: Colors.night.circle.darker,
+    stop: Colors.night.circle.lighter
   }
 };
 
@@ -51,16 +51,11 @@ const Svg = styled.svg`
 
 class PlayButton extends React.PureComponent {
   static propTypes = {
-    circleType: propTypes.oneOf([
-      "dayGradient",
-      "eveningGradient",
-      "nightGradient"
-    ])
+    period: propTypes.oneOf(["day", "evening", "night"])
   };
 
   static defaultProps = {
-    isPay: true,
-    circleType: "dayGradient"
+    isPay: true
   };
 
   constructor(props) {
@@ -77,17 +72,21 @@ class PlayButton extends React.PureComponent {
 
   render() {
     const { isPlay } = this.state;
-    const { circleType } = this.props;
+    const { period } = this.props;
 
-    const Gradient = Gradient_MAP[circleType];
+    const Gradient = Gradient_MAP[period];
 
-    const PLAY_BUTTON_LEFT = isPlay ? PLAY_LEFT : PAUSE_LEFT;
-    const PLAY_BUTTON_RIGHT = isPlay ? PLAY_RIGHT : PAUSE_RIGHT;
+    const PLAY_BUTTON_LEFT = isPlay
+      ? [PLAY_LEFT, PAUSE_LEFT]
+      : [PAUSE_LEFT, PLAY_LEFT];
+    const PLAY_BUTTON_RIGHT = isPlay
+      ? [PLAY_RIGHT, PAUSE_RIGHT]
+      : [PAUSE_RIGHT, PLAY_RIGHT];
 
     return (
-      <Svg width='100px' height='100px' onClick={this.onClick}>
+      <Svg id='playButton' width='100px' height='100px' onClick={this.onClick}>
         <defs>
-          <linearGradient id='gradient2' gradientTransform="rotate(90)">
+          <linearGradient id='gradient2' gradientTransform='rotate(90)'>
             <stop
               offset='0%'
               stopColor={Gradient.stop}
@@ -102,21 +101,41 @@ class PlayButton extends React.PureComponent {
         </defs>
         <circle cx='50' cy='40' r='35' strokeWidth='25' fill='#fff' />
         <polygon
-          points={PLAY_BUTTON_LEFT}
+          points={PLAY_BUTTON_LEFT[1]}
           stroke='url(#gradient2)'
           fill='url(#gradient2)'
           style={{
             transition: "all .5s ease"
           }}
-        />
+        >
+          <animate
+            id='playLeft'
+            begin='playButton.click'
+            attributeType='XML'
+            attributeName='points'
+            dur='.2s'
+            from={PLAY_BUTTON_LEFT[0]}
+            to={PLAY_BUTTON_LEFT[1]}
+          />
+        </polygon>
         <polygon
-          points={PLAY_BUTTON_RIGHT}
+          points={PLAY_BUTTON_RIGHT[1]}
           stroke='url(#gradient2)'
           fill='url(#gradient2)'
           style={{
             transition: "all .5s ease"
           }}
-        />
+        >
+          <animate
+            id='playRight'
+            begin='playButton.click'
+            attributeType='XML'
+            attributeName='points'
+            dur='.2s'
+            from={PLAY_BUTTON_RIGHT[0]}
+            to={PLAY_BUTTON_RIGHT[1]}
+          />
+        </polygon>
       </Svg>
     );
   }

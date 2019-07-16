@@ -1,8 +1,8 @@
 import Clock from '../screens/ClockScreen';
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ clock }) => ({
-  
+const mapStateToProps = ({ layout }) => ({
+  period: layout.get('period')
 });
 
 const mapDispatchToProps = dispatch => ({

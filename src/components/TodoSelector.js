@@ -101,7 +101,7 @@ const AddToDo = styled.div`
 
 class TodoSelector extends React.PureComponent {
   render() {
-    const { selectedId } = this.props;
+    const { selectedId, todoList } = this.props;
 
     return (
       <TodoSelectorContainer>
@@ -111,10 +111,14 @@ class TodoSelector extends React.PureComponent {
           <TodoCount>(6)</TodoCount>
         </SubTitle>
         <TodoList>
-          <ToDoItem id={1} selectedId={selectedId} content='TESTTESTTEST' />
-          <ToDoItem id={2} selectedId={selectedId} content='TESTTESTTEST' />
-          <ToDoItem id={3} selectedId={selectedId} content='TESTTESTTEST' />
-          <ToDoItem id={4} selectedId={selectedId} content='TESTTESTTEST' />
+          {todoList.map(todo => (
+            <ToDoItem
+              key={`layoutTodo${todo.get("id")}`}
+              id={todo.get("id")}
+              selectedId={selectedId}
+              content={todo.get("content")}
+            />
+          ))}
         </TodoList>
         <AddToDo>
           <PlusIcon>+</PlusIcon>
