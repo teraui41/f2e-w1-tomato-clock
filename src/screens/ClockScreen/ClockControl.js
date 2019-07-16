@@ -67,19 +67,21 @@ class ClockControl extends React.PureComponent {
   render() {
     const {
       active,
-      currentTime: time,
+      countingTime,
+      startCounting,
+      isPlaying,
       period,
       todoText = "The first thing to do today."
     } = this.props;
 
-    const currentTime = moment(25* 60 * 1000).format("mm:ss");
+    const currentTime = moment(countingTime).format("mm:ss");
 
     return (
       <div>
         <BellIcon active={active} />
         <TimeCounter>{currentTime}</TimeCounter>
         <TodoInfo>{todoText}</TodoInfo>
-        <PlayButton period={period} />
+        <PlayButton period={period} isPlaying={isPlaying} onClick={startCounting}/>
         <CancelButton>Cancel</CancelButton>
       </div>
     );

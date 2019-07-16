@@ -10,19 +10,54 @@ const SCENERY_MAP = {
 }
 
 const SceneryContainer = styled.div`
-  background: ${({period}) => SCENERY_MAP[period]};
   position: absolute;
   width: 450px;
   height: 100%;
   right: 0px;
 `;
 
+const NightScenery = styled.div`
+background: ${SCENERY_MAP['night']}
+position: absolute;
+width: 450px;
+height: 100%;
+top: 0;
+right: 0px;
+opacity: ${props=> props.period === 'night' ? 1: 0}
+transition: opacity 5s ease;
+`
+
+const EveningScenery = styled.div`
+background: ${SCENERY_MAP['evening']}
+position: absolute;
+width: 450px;
+height: 100%;
+top: 0;
+right: 0px;
+opacity: ${props=> props.period === 'evening' ? 1: 0}
+transition: opacity 5s ease;
+`
+
+const DayScenery = styled.div`
+background: ${SCENERY_MAP['day']}
+position: absolute;
+width: 450px;
+height: 100%;
+top: 0;
+right: 0px;
+opacity: ${props=> props.period === 'day' ? 1: 0}
+transition: opacity 5s ease;
+`
+
 class Scenery extends React.PureComponent {
   render() {
     const { period } = this.props;
 
     return (
-      <SceneryContainer period={period}>
+      <SceneryContainer>
+        <NightScenery period={period}/>
+        <EveningScenery period={period}/>
+        <DayScenery period={period}/>
         <Wave1 />
         <Wave2 />
       </SceneryContainer>

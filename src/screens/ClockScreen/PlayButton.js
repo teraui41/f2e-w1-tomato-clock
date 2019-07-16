@@ -58,33 +58,20 @@ class PlayButton extends React.PureComponent {
     isPay: true
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isPlay: false
-    };
-  }
-
-  onClick = () => {
-    this.setState(state => ({ ...state, isPlay: !this.state.isPlay }));
-  };
-
   render() {
-    const { isPlay } = this.state;
-    const { period } = this.props;
+    const { period, onClick, isPlaying } = this.props;
 
     const Gradient = Gradient_MAP[period];
 
-    const PLAY_BUTTON_LEFT = isPlay
+    const PLAY_BUTTON_LEFT = isPlaying
       ? [PLAY_LEFT, PAUSE_LEFT]
       : [PAUSE_LEFT, PLAY_LEFT];
-    const PLAY_BUTTON_RIGHT = isPlay
+    const PLAY_BUTTON_RIGHT = isPlaying
       ? [PLAY_RIGHT, PAUSE_RIGHT]
       : [PAUSE_RIGHT, PLAY_RIGHT];
 
     return (
-      <Svg id='playButton' width='100px' height='100px' onClick={this.onClick}>
+      <Svg id='playButton' width='100px' height='100px' onClick={onClick}>
         <defs>
           <linearGradient id='gradient2' gradientTransform='rotate(90)'>
             <stop

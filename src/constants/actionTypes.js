@@ -5,13 +5,14 @@ const createTypes = array =>
 
 const actionTypes = createTypes([
   "SET_ACTIVE_ID",
+  "SET_PERIOD",
   "ADD_TODO",
   "GET_TODO",
   "DELETE_TODO",
   "ADD_DONE",
   "GET_DONE",
   "DELETE_DONE",
-  "START_COUNTING",
+  "MINUS_SECOND",
   "STOP_COUNTING",
   "RESET_COUNTING",
   "ADD_TODO_TO_DOING",

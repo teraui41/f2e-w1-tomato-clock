@@ -37,12 +37,12 @@ const MOCK_DATA = [
 
 export const layoutState =fromJS({
   period: 'day',
-  activeId: 'clock',
-  countingTime: INIT_DAY_TIME,
+  activeId: 'clock'
 })
 
 export const clockState = fromJS({
-  isPlaying: false
+  isPlaying: false,
+  countingTime: INIT_DAY_TIME,
 })
 
 export const reportState = fromJS({
