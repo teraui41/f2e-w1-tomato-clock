@@ -72,7 +72,7 @@ class ClockControl extends React.PureComponent {
       todoText = "The first thing to do today."
     } = this.props;
 
-    const currentTime = moment(time).format("mm:ss");
+    const currentTime = moment(25* 60 * 1000).format("mm:ss");
 
     return (
       <div>

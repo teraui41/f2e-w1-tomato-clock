@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Wave1, Wave2 } from './Nature';
 import { Colors } from '../../../constants/colors.config';
 
 const SCENERY_MAP = {
@@ -20,7 +21,8 @@ class Scenery extends React.PureComponent {
   render() {
     return (
       <SceneryContainer>
-        
+        <Wave1 />
+        <Wave2 />
       </SceneryContainer>
     )
   }

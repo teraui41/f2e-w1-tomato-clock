@@ -91,9 +91,9 @@ const App = props => {
         </ControlPanel>
         <Content>
           <ContentSelector selectedIndex={selectedIndex}>
-            <ClockContainer />
-            <TodoListContainer />
-            <ReportContainer />
+            <ClockContainer activeId={activeId}/>
+            <TodoListContainer activeId={activeId}/>
+            <ReportContainer activeId={activeId}/>
           </ContentSelector>
         </Content>
       </Panel>

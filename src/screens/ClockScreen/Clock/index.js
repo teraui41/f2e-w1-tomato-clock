@@ -22,8 +22,6 @@ class ClockCircle extends React.PureComponent {
 
   render() {
     const { valueRadio, circleType } = this.props;
-    console.log("TCL: ClockCircle -> render -> circleType", circleType)
-
     return (
       <ClockCircleContainer>
         <Circle valueRadio={valueRadio} circleType={circleType}/>
