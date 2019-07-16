@@ -44,12 +44,13 @@ const TodoList = styled.div`
   overflow: auto;
 `;
 
-const ToDoItem = ({ id, selectedId, content, isDoing }) => {
+const ToDoItem = ({ id, selectedId, content, isPlaying, onClick }) => {
+
   const isSelected = id === selectedId;
-  const iconName = isSelected ? (isDoing ? "play" : "pause") : "circle-o";
+  const iconName = isSelected ? (isPlaying ? "play" : "pause") : "circle-o";
 
   return (
-    <StyledToDoItem isSelected={isSelected}>
+    <StyledToDoItem isSelected={isSelected} onClick={onClick}>
       <Icon icon={iconName} />
       <span>{content}</span>
     </StyledToDoItem>
@@ -100,8 +101,13 @@ const AddToDo = styled.div`
 `;
 
 class TodoSelector extends React.PureComponent {
+
+  setSelectedId = id => () => {
+    this.props.addToDoToDoing(id);
+  }
+
   render() {
-    const { selectedId, todoList } = this.props;
+    const { selectedId, todoList, isPlaying } = this.props;
 
     return (
       <TodoSelectorContainer>
@@ -115,8 +121,10 @@ class TodoSelector extends React.PureComponent {
             <ToDoItem
               key={`layoutTodo${todo.get("id")}`}
               id={todo.get("id")}
+              isPlaying={isPlaying}
               selectedId={selectedId}
               content={todo.get("content")}
+              onClick={this.setSelectedId(todo.get("id"))}
             />
           ))}
         </TodoList>

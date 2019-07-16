@@ -3,8 +3,10 @@ import Clock from '../screens/ClockScreen';
 import { setPeriodAction } from '../actions/layoutActions';
 import { minusSecondAction, stopCountingAction, resetCountingAction } from '../actions/clockActions';
 
-const mapStateToProps = ({ layout, clock }) => ({
+const mapStateToProps = ({ layout, clock, todoList }) => ({
   period: layout.get('period'),
+  todoList: todoList.get('todoList'),
+  selectedId: todoList.get('selectedId'),
   countingTime: clock.get('countingTime'),
   isPlaying: clock.get('isPlaying')
 });

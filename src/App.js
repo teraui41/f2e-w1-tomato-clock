@@ -78,7 +78,7 @@ const Motto = styled.div`
 `;
 
 const App = props => {
-  const { period, todoList, activeId, selectedId, setActiveId } = props;
+  const { period, todoList, activeId, selectedId, setActiveId, addToDoToDoing, isPlaying } = props;
 
   const selectedIndex = ID_MAP.indexOf(activeId);
 
@@ -94,7 +94,7 @@ const App = props => {
             setActiveId={setActiveId}
           />
           <Motto colorSetting={colorSetting}>Work hard, play hard.</Motto>
-          <TodoSelector selectedId={selectedId} todoList={todoList} />
+          <TodoSelector selectedId={selectedId} isPlaying={isPlaying} todoList={todoList} addToDoToDoing={addToDoToDoing} />
         </ControlPanel>
         <Content>
           <ContentSelector selectedIndex={selectedIndex}>

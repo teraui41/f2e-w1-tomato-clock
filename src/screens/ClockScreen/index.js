@@ -85,7 +85,7 @@ class ClockScreen extends React.PureComponent {
   };
 
   render() {
-    const { activeId, period, resetCounting, countingTime, isPlaying } = this.props;
+    const { activeId, period, resetCounting, selectedId, countingTime, todoList, isPlaying } = this.props;
     const { valueRadio } = this.state;
 
     return (
@@ -96,6 +96,8 @@ class ClockScreen extends React.PureComponent {
           period={period}
           isPlaying={isPlaying}
           countingTime={countingTime}
+          todoList={todoList}
+          selectedId={selectedId}
           startCounting={this.startCounting}
           stopCounting={this.stopCounting}
           resetCounting={resetCounting}

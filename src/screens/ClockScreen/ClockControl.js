@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PlayButton from "./PlayButton";
+import isEmpty from 'lodash/isEmpty';
 import Icon from "../../components/Icon";
 import { Colors } from "../../constants/colors.config";
 import moment from "moment";
@@ -64,17 +65,28 @@ const CancelButton = styled.span`
 `;
 
 class ClockControl extends React.PureComponent {
+
+  getTodoText = () => {
+    const { selectedId, todoList } = this.props;
+
+    if(isEmpty(selectedId)) return 'The first thing to do today.';
+
+    const item = todoList.find(item=> item.get('id') === selectedId);
+    return item.get('content');
+  }
+
   render() {
     const {
       active,
       countingTime,
       startCounting,
       isPlaying,
-      period,
-      todoText = "The first thing to do today."
+      period
     } = this.props;
 
     const currentTime = moment(countingTime).format("mm:ss");
+
+    const todoText = this.getTodoText();
 
     return (
       <div>
