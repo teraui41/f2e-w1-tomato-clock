@@ -56,7 +56,7 @@ class ClockScreen extends React.PureComponent {
     const { countingTime, period } = this.props;
 
     const minValue = 0;
-    const maxValue = period === 'night' ? INIT_NIGHT_TIME: INIT_DAY_TIME;
+    const maxValue = period === "night" ? INIT_NIGHT_TIME : INIT_DAY_TIME;
     const boundedValue = Math.min(Math.max(countingTime, minValue), maxValue);
     const valueRadio =
       (maxValue - boundedValue - minValue) / (maxValue - minValue);
@@ -66,7 +66,7 @@ class ClockScreen extends React.PureComponent {
       valueRadio
     }));
 
-    if (countingTime <= 0 && period === 'night') {
+    if (countingTime <= 0 && period === "night") {
       this.props.setPeriod("day");
       this.props.resetCounting(INIT_DAY_TIME);
       this.props.stopCounting();
@@ -85,7 +85,17 @@ class ClockScreen extends React.PureComponent {
   };
 
   render() {
-    const { activeId, period, resetCounting, selectedId, countingTime, todoList, isPlaying } = this.props;
+    const {
+      activeId,
+      period,
+      resetCounting,
+      selectedId,
+      countingTime,
+      todoList,
+      isPlaying
+    } = this.props;
+    console.log("TCL: ClockScreen -> render -> selectedId", selectedId)
+
     const { valueRadio } = this.state;
 
     return (

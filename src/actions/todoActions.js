@@ -1,5 +1,10 @@
 import types from '../constants/actionTypes'
 
+export const addTodoToDoingAction = payload => ({
+  type: types.ADD_TODO_TO_DOING,
+  payload
+});
+
 export const addTodoAction = payload => ({
   type: types.ADD_TODO,
   payload

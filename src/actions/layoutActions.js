@@ -1,12 +1,7 @@
 import types from '../constants/actionTypes'
 
-export const SetActiveIdAction = payload => ({
+export const setActiveIdAction = payload => ({
   type: types.SET_ACTIVE_ID,
-  payload
-});
-
-export const addTodoToDoingAction = payload => ({
-  type: types.ADD_TODO_TO_DOING,
   payload
 });
 

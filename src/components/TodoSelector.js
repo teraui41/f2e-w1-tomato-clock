@@ -1,8 +1,10 @@
 import React from "react";
 import moment from "moment";
+import isEmpty from 'lodash/isEmpty';
 import styled from "styled-components";
 import Icon from "../components/Icon";
 import { Colors } from "../constants/colors.config";
+import { INIT_DAY_TIME } from "../constants/common";
 
 const Today = styled.div`
   font-size: 3.2rem;
@@ -45,7 +47,6 @@ const TodoList = styled.div`
 `;
 
 const ToDoItem = ({ id, selectedId, content, isPlaying, onClick }) => {
-
   const isSelected = id === selectedId;
   const iconName = isSelected ? (isPlaying ? "play" : "pause") : "circle-o";
 
@@ -84,6 +85,18 @@ const PlusIcon = styled.span`
   margin-right: 15px;
 `;
 
+const AddToDoInput = styled.input`
+  background-color: #1e2253;
+  border: none;
+  outline: none;
+  color: ${Colors.white}
+  font-size: 1.4rem;
+  transition: all .5s ease;
+  &::placeholder {
+    color: ${Colors.white}
+  }
+`;
+
 const AddToDo = styled.div`
   color: ${Colors.white}
   font-size: 1.4rem;
@@ -95,18 +108,65 @@ const AddToDo = styled.div`
   padding-left: 12px;
   vertical-align: middle;
   transition: all .5s ease;
+
   &:hover {
     background-color: rgba(255,255,255, 0.2);
   }
+  &:hover input{
+    background-color: rgba(255,255,255, 0.1);
+  }
+`;
+
+const EmptyContent = styled.div`
+color: ${Colors.white}
+padding: 25px 10px;
+    font-size: 1.2rem;
+    border-top: 1px solid #5b5e89;
 `;
 
 class TodoSelector extends React.PureComponent {
 
-  setSelectedId = id => () => {
-    this.props.addToDoToDoing(id);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      content: ''
+    }
   }
 
+  onChange = ({ target: { value } }) => {
+    this.setState(state => ({ ...state, content: value }));
+  };
+
+  setSelectedId = id => () => {
+    const { isPlaying, resetCounting, setPeriod, addToDoToDoing } = this.props;
+
+    if (isPlaying) return;
+
+    resetCounting(INIT_DAY_TIME);
+    setPeriod("day");
+    addToDoToDoing(id);
+  };
+
+  addTodoToList = () => {
+    const { content } = this.state;
+
+    if(isEmpty(content)) {
+      return;
+    }
+
+    const payload = {
+      content,
+      id: (+moment()).toString(),
+      doneDate: null,
+    };
+
+    this.props.addTodo(payload);
+    this.setState(state=>({...state, content: ''}));
+  };
+
   render() {
+    const { content } = this.state;
     const { selectedId, todoList, isPlaying } = this.props;
 
     return (
@@ -114,9 +174,12 @@ class TodoSelector extends React.PureComponent {
         <Today>Today</Today>
         <SubTitle>
           <Date>{moment().format("DD MMMM YYYY")}</Date>
-          <TodoCount>(6)</TodoCount>
+          <TodoCount>({todoList.size})</TodoCount>
         </SubTitle>
         <TodoList>
+          {todoList.isEmpty() ? (
+            <EmptyContent> . . . </EmptyContent>
+          ) : null}
           {todoList.map(todo => (
             <ToDoItem
               key={`layoutTodo${todo.get("id")}`}
@@ -129,8 +192,13 @@ class TodoSelector extends React.PureComponent {
           ))}
         </TodoList>
         <AddToDo>
-          <PlusIcon>+</PlusIcon>
-          <span> Add a new mission</span>
+          <PlusIcon onClick={this.addTodoToList}>+</PlusIcon>
+          <AddToDoInput
+            type='text'
+            placeholder='Add a new mission'
+            onChange={this.onChange}
+            value={content}
+          />
         </AddToDo>
       </TodoSelectorContainer>
     );

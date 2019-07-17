@@ -50,7 +50,7 @@ export const reportState = fromJS({
 })
 
 export const todoListState = fromJS({
-  todoList: MOCK_DATA,
+  todoList: [],
   doneList: MOCK_DATA,
   selectedToDoId: ''
 });
