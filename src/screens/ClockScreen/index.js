@@ -1,6 +1,6 @@
 import React from "react";
 import moment from 'moment';
-import styled from "styled-components";
+import isEmpty from 'lodash/isEmpty';
 import Scenery from "./Scenery";
 import ClockCircle from "./Clock";
 import TomatoCap from "./TomatoCap";
@@ -16,7 +16,7 @@ const defaultState = {
   id: "",
   index: null,
   doneDate: null,
-  content: "The first thing to do today.",
+  content: "Set a mission to this pomodoro !",
   tomatoes: []
 };
 
@@ -47,7 +47,11 @@ class ClockScreen extends React.PureComponent {
   }
 
   startCounting = () => {
-    const { isPlaying } = this.props;
+    const { isPlaying, selectedId } = this.props;
+
+    if(isEmpty(selectedId)){
+      return;
+    }
 
     if (isPlaying) {
       this.stopCounting();
@@ -120,11 +124,15 @@ class ClockScreen extends React.PureComponent {
   onDoneClick = () => {
     const { selectedId, deleteTodo, todoList } = this.props;
 
+    if(isEmpty(selectedId))
+      return;
+
     const index = todoList.findIndex(todo => todo.get("id") === selectedId);
 
     const todoItem = todoList.get(index).toJS();
 
-    deleteTodo({ index, ...todoItem, doneDate: moment().date() });
+    deleteTodo({ index, ...todoItem, doneDate: moment().format('YYYY-MM-DD') });
+
     this.initClock();
   };
 

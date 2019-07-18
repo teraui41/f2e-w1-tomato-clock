@@ -6,10 +6,10 @@ import { minusSecondAction, stopCountingAction, resetCountingAction } from '../a
 
 const mapStateToProps = ({ layout, clock, todoList }) => ({
   period: layout.get('period'),
+  isPlaying: clock.get('isPlaying'),
   todoList: todoList.get('todoList'),
   selectedId: todoList.get('selectedId'),
-  countingTime: clock.get('countingTime'),
-  isPlaying: clock.get('isPlaying')
+  countingTime: clock.get('countingTime')
 });
 
 const mapDispatchToProps = dispatch => ({

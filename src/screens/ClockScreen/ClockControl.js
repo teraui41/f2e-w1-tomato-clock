@@ -1,10 +1,9 @@
 import React from "react";
+import moment from "moment";
 import styled from "styled-components";
 import PlayButton from "./PlayButton";
-import isEmpty from "lodash/isEmpty";
 import Icon from "../../components/Icon";
 import { Colors } from "../../constants/colors.config";
-import moment from "moment";
 
 const innerBellIcon = ({ className, active }) => {
   const iconName = active ? "bell-o" : "bell-slash-o";

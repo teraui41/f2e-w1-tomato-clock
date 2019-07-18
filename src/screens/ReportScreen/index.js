@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Chart from './Chart';
 import { Colors } from "../../constants/colors.config";
 import { Panel, PanelTitle } from "../../components/Panel";
 import { DataContainer, ContentContainer } from "../../components/Containers";
@@ -62,7 +63,7 @@ const Separator = styled.span`
 
 class ReportScreen extends React.PureComponent {
   render() {
-    const { activeId } = this.props;
+    const { activeId, period, todayTomatoes, todayTodoNumber, todayDoneNumber, weekTodoes } = this.props;
     return (
       <ContentContainer contentId='report' activeId={activeId}>
         <DataContainer>
@@ -70,13 +71,13 @@ class ReportScreen extends React.PureComponent {
             <PanelTitle>Tomato of this week</PanelTitle>
             <TomatoCountContainer>
               <TomatoCount>
-                <h2>6</h2>
+                <h2>{todayTomatoes}</h2>
                 <span>Today</span>
-                <Message todo={6} done={1} />
+                <Message todo={todayTodoNumber} done={todayDoneNumber} />
               </TomatoCount>
               <Separator />
               <TomatoCount right>
-                <h2>20</h2>
+                <h2>{weekTodoes}</h2>
                 <span>Week</span>
               </TomatoCount>
             </TomatoCountContainer>
@@ -85,6 +86,7 @@ class ReportScreen extends React.PureComponent {
         <DataContainer>
           <Panel>
             <PanelTitle>Chart</PanelTitle>
+            <Chart period={period}/>
           </Panel>
         </DataContainer>
       </ContentContainer>
