@@ -8,6 +8,7 @@ const actionTypes = createTypes([
   "SET_PERIOD",
   "ADD_TODO",
   "GET_TODO",
+  "UPDATE_TODO",
   "DELETE_TODO",
   "ADD_DONE",
   "GET_DONE",

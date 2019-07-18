@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import isEmpty from 'lodash/isEmpty';
+import isEmpty from "lodash/isEmpty";
 import styled from "styled-components";
 import Icon from "../components/Icon";
 import { Colors } from "../constants/colors.config";
@@ -118,20 +118,19 @@ const AddToDo = styled.div`
 `;
 
 const EmptyContent = styled.div`
-color: ${Colors.white}
-padding: 25px 10px;
-    font-size: 1.2rem;
-    border-top: 1px solid #5b5e89;
+  color: ${Colors.white};
+  padding: 25px 10px;
+  font-size: 1.2rem;
+  border-top: 1px solid #5b5e89;
 `;
 
 class TodoSelector extends React.PureComponent {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      content: ''
-    }
+      content: ""
+    };
   }
 
   onChange = ({ target: { value } }) => {
@@ -151,7 +150,7 @@ class TodoSelector extends React.PureComponent {
   addTodoToList = () => {
     const { content } = this.state;
 
-    if(isEmpty(content)) {
+    if (isEmpty(content)) {
       return;
     }
 
@@ -159,10 +158,11 @@ class TodoSelector extends React.PureComponent {
       content,
       id: (+moment()).toString(),
       doneDate: null,
+      tomatoes: []
     };
 
     this.props.addTodo(payload);
-    this.setState(state=>({...state, content: ''}));
+    this.setState(state => ({ ...state, content: "" }));
   };
 
   render() {
@@ -177,9 +177,7 @@ class TodoSelector extends React.PureComponent {
           <TodoCount>({todoList.size})</TodoCount>
         </SubTitle>
         <TodoList>
-          {todoList.isEmpty() ? (
-            <EmptyContent> . . . </EmptyContent>
-          ) : null}
+          {todoList.isEmpty() ? <EmptyContent> . . . </EmptyContent> : null}
           {todoList.map(todo => (
             <ToDoItem
               key={`layoutTodo${todo.get("id")}`}

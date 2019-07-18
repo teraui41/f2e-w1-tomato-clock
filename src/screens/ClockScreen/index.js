@@ -1,4 +1,5 @@
 import React from "react";
+import moment from 'moment';
 import styled from "styled-components";
 import Scenery from "./Scenery";
 import ClockCircle from "./Clock";
@@ -11,6 +12,14 @@ import {
   INIT_NIGHT_TIME
 } from "../../constants/common";
 
+const defaultState = {
+  id: "",
+  index: null,
+  doneDate: null,
+  content: "The first thing to do today.",
+  tomatoes: []
+};
+
 class ClockScreen extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -20,11 +29,18 @@ class ClockScreen extends React.PureComponent {
     this.state = {
       value: 0,
       valueRadio: 0,
-      circleType: "dayGradient"
+      ...defaultState
     };
   }
 
-  componentDidMount() {}
+  componentDidUpdate(nextProps, nextState) {
+    const { todoList, selectedId } = this.props;
+    if (selectedId !== nextProps.selectedId) {
+      const index = todoList.findIndex(todo => todo.get("id") === selectedId);
+      const todoItem = todoList.get(index).toJS();
+      this.setState(state => ({ ...state, index, ...todoItem }));
+    }
+  }
 
   componentWillUnmount() {
     if (this.interval !== null) clearInterval(this.interval);
@@ -53,7 +69,13 @@ class ClockScreen extends React.PureComponent {
   minusSecond = () => {
     this.props.minusSecond();
 
-    const { countingTime, period } = this.props;
+    const {
+      countingTime,
+      period,
+      todoList,
+      selectedId,
+      updateTodo
+    } = this.props;
 
     const minValue = 0;
     const maxValue = period === "night" ? INIT_NIGHT_TIME : INIT_DAY_TIME;
@@ -67,10 +89,14 @@ class ClockScreen extends React.PureComponent {
     }));
 
     if (countingTime <= 0 && period === "night") {
-      this.props.setPeriod("day");
-      this.props.resetCounting(INIT_DAY_TIME);
-      this.props.stopCounting();
-      clearInterval(this.interval);
+      this.initClock();
+
+      const index = todoList.findIndex(todo => todo.get("id") === selectedId);
+      const currentTomato = todoList.getIn([index, "tomatoes"]);
+      const tomatoes = [...currentTomato, "●"];
+      updateTodo({ index, tomatoes });
+      this.setState(state => ({ ...state, tomatoes }));
+
       return;
     }
 
@@ -84,32 +110,57 @@ class ClockScreen extends React.PureComponent {
     }
   };
 
+  initClock = () => {
+    this.props.setPeriod("day");
+    this.props.resetCounting(INIT_DAY_TIME);
+    this.props.stopCounting();
+    clearInterval(this.interval);
+  };
+
+  onDoneClick = () => {
+    const { selectedId, deleteTodo, todoList } = this.props;
+
+    const index = todoList.findIndex(todo => todo.get("id") === selectedId);
+
+    const todoItem = todoList.get(index).toJS();
+
+    deleteTodo({ index, ...todoItem, doneDate: moment().date() });
+    this.initClock();
+  };
+
   render() {
     const {
-      activeId,
       period,
-      resetCounting,
-      selectedId,
-      countingTime,
       todoList,
-      isPlaying
+      activeId,
+      isPlaying,
+      selectedId,
+      deleteTodo,
+      updateTodo,
+      countingTime,
+      resetCounting
     } = this.props;
-    console.log("TCL: ClockScreen -> render -> selectedId", selectedId)
 
-    const { valueRadio } = this.state;
+    const { valueRadio, content, tomatoes } = this.state;
 
     return (
       <ContentContainer contentId='clock' activeId={activeId}>
         <Scenery period={period} />
         <ClockCircle valueRadio={valueRadio} period={period} />
         <ClockControl
+          updateTodo={updateTodo}
           period={period}
-          isPlaying={isPlaying}
-          countingTime={countingTime}
           todoList={todoList}
+          isPlaying={isPlaying}
           selectedId={selectedId}
-          startCounting={this.startCounting}
+          deleteTodo={deleteTodo}
+          tomatoes={tomatoes}
+          content={content}
+          onDoneClick={this.onDoneClick}
+          countingTime={countingTime}
+          initClock={this.initClock}
           stopCounting={this.stopCounting}
+          startCounting={this.startCounting}
           resetCounting={resetCounting}
         />
         <TomatoCap />

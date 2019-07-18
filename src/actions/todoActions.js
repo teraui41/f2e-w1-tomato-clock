@@ -10,6 +10,11 @@ export const addTodoAction = payload => ({
   payload
 });
 
+export const updateTodoAction = payload => ({
+  type: types.UPDATE_TODO,
+  payload
+});
+
 export const getTodoAction = payload => ({
   type: types.GET_TODO,
   payload

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PlayButton from "./PlayButton";
-import isEmpty from 'lodash/isEmpty';
+import isEmpty from "lodash/isEmpty";
 import Icon from "../../components/Icon";
 import { Colors } from "../../constants/colors.config";
 import moment from "moment";
@@ -42,7 +42,7 @@ const TimeCounter = styled.span`
 
 const TodoInfo = styled.span`
   position: absolute;
-  top: 365px;
+  top: 352px;
   left: 106px;
   font-size: 1.2rem;
   letter-spacing: 1px;
@@ -52,28 +52,43 @@ const TodoInfo = styled.span`
   text-align: center;
 `;
 
-const CancelButton = styled.span`
+const DoneButton = styled.span`
   position: absolute;
-  top: 580px;
-  left: 100px;
-  font-size: 1rem;
+  top: 573px;
+  left: 103px;
+  font-weight: bold;
+  font-size: 1.1rem;
   letter-spacing: 1px;
   color: ${Colors.white};
   width: 300px;
   font-weight: bold;
   text-align: center;
+  cursor: pointer;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
+const BasicTomatoNumber = ({ className, tomatoes }) => (
+  <div className={className}>{tomatoes.join(" ")}</div>
+);
+
+const TomatoNumber = styled(BasicTomatoNumber)`
+  width: 400px;
+  top: 381px;
+  text-align: center;
+  padding-left: 53px;
+  position: absolute;
+  color: ${Colors.white};
+`;
+
+
 class ClockControl extends React.PureComponent {
-
-  getTodoText = () => {
-    const { selectedId, todoList } = this.props;
-
-    if(isEmpty(selectedId)) return 'The first thing to do today.';
-
-    const item = todoList.find(item=> item.get('id') === selectedId);
-    return item.get('content');
-  }
+  
+  onClick = () => {
+    this.props.onDoneClick();
+  };
 
   render() {
     const {
@@ -81,20 +96,25 @@ class ClockControl extends React.PureComponent {
       countingTime,
       startCounting,
       isPlaying,
-      period
+      period,
+      content,
+      tomatoes
     } = this.props;
 
     const currentTime = moment(countingTime).format("mm:ss");
-
-    const todoText = this.getTodoText();
 
     return (
       <div>
         <BellIcon active={active} />
         <TimeCounter>{currentTime}</TimeCounter>
-        <TodoInfo>{todoText}</TodoInfo>
-        <PlayButton period={period} isPlaying={isPlaying} onClick={startCounting}/>
-        <CancelButton>Cancel</CancelButton>
+        <TodoInfo>{content}</TodoInfo>
+        <PlayButton
+          period={period}
+          isPlaying={isPlaying}
+          onClick={startCounting}
+        />
+        <TomatoNumber tomatoes={tomatoes} />
+        <DoneButton onClick={this.onClick}>Done</DoneButton>
       </div>
     );
   }

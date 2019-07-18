@@ -1,39 +1,7 @@
 import { fromJS } from 'immutable';
 import { Colors } from '../constants/colors.config';
 import { INIT_DAY_TIME } from '../constants/common';
-
-const MOCK_DATA = [
-  {
-    id:'1',
-    doneDate: null,
-    content: 'TEST TODO LIST A'
-  },
-  {
-    id:'2',
-    doneDate: null,
-    content: 'TEST TODO LIST B'
-  },
-  {
-    id:'3',
-    doneDate: null,
-    content: 'TEST TODO LIST C'
-  },
-  {
-    id:'4',
-    doneDate: null,
-    content: 'TEST TODO LIST D'
-  },
-  {
-    id:'5',
-    doneDate: null,
-    content: 'TEST TODO LIST E'
-  },
-  {
-    id:'6',
-    doneDate: null,
-    content: 'TEST TODO LIST F'
-  }
-];
+import { getDoneList, getTodoList } from '../utils/localStorage';
 
 export const layoutState =fromJS({
   period: 'day',
@@ -50,7 +18,7 @@ export const reportState = fromJS({
 })
 
 export const todoListState = fromJS({
-  todoList: [],
-  doneList: MOCK_DATA,
+  todoList: getTodoList(),
+  doneList: getDoneList(),
   selectedToDoId: ''
 });

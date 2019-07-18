@@ -33,8 +33,8 @@ class ToDoListScreen extends React.PureComponent {
               {todoList.isEmpty() ? <EmptyContent> . . . </EmptyContent> : null}
               {todoList.map(todo => (
                 <ToDoItem
-                  key={`Todo${todo.get("id")}`}
-                  content={todo.get("content")}
+                  key={`Todo${todo.get('id')}`}
+                  content={todo.get('content')}
                 />
               ))}
             </ListBox>
@@ -44,14 +44,14 @@ class ToDoListScreen extends React.PureComponent {
           <Panel>
             <PanelTitle>Done</PanelTitle>
             <ListBox>
-            {doneList.isEmpty() ? <EmptyContent> . . . </EmptyContent> : null}
-            {doneList.map(todo => (
-              <ToDoItem
-                key={`Todo${todo.get("id")}`}
-                content={todo.get("content")}
-                isDone
-              />
-            ))}
+              {doneList.isEmpty() ? <EmptyContent> . . . </EmptyContent> : null}
+              {doneList.map(todo => (
+                <ToDoItem
+                  key={`Todo${todo.get("id")}`}
+                  content={todo.get("content")}
+                  isDone
+                />
+              ))}
             </ListBox>
           </Panel>
         </DataContainer>

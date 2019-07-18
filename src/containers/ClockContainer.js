@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Clock from '../screens/ClockScreen';
 import { setPeriodAction } from '../actions/layoutActions';
+import { deleteTodoAction, updateTodoAction } from '../actions/todoActions';
 import { minusSecondAction, stopCountingAction, resetCountingAction } from '../actions/clockActions';
 
 const mapStateToProps = ({ layout, clock, todoList }) => ({
@@ -15,6 +16,9 @@ const mapDispatchToProps = dispatch => ({
   minusSecond: () => {
     dispatch(minusSecondAction());
   },
+  deleteTodo: payload => {
+    dispatch(deleteTodoAction(payload));
+  },
   stopCounting: () => {
     dispatch(stopCountingAction());
   },
@@ -23,6 +27,9 @@ const mapDispatchToProps = dispatch => ({
   },
   setPeriod: payload => {
     dispatch(setPeriodAction(payload))
+  },
+  updateTodo: payload => {
+    dispatch(updateTodoAction(payload));
   }
 });
 
