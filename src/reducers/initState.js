@@ -1,5 +1,4 @@
 import { fromJS } from 'immutable';
-import { Colors } from '../constants/colors.config';
 import { INIT_DAY_TIME } from '../constants/common';
 import { getDoneList, getTodoList } from '../utils/localStorage';
 

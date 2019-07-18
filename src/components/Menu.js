@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Icon from "./Icon";
 import { Colors } from "../constants/colors.config";
 
-const innerMenuItem = ({ className, text, icon, ...props }) => (
+const innerMenuItem = ({ className, colorSetting, text, activeId, icon, ...props }) => (
   <span className={className} {...props}>
     <Icon icon={icon} />
     <span>{text}</span>

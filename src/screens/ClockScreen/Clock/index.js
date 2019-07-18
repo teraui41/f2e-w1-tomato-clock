@@ -18,8 +18,6 @@ class ClockCircle extends React.PureComponent {
     }
   }
 
-
-
   render() {
     const { valueRadio, period } = this.props;
     return (
