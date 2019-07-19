@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/f2e-w1-tomato-clock/static/css/main.34de6062.chunk.css",
+    "main.js": "/f2e-w1-tomato-clock/static/js/main.1b9e865e.chunk.js",
+    "main.js.map": "/f2e-w1-tomato-clock/static/js/main.1b9e865e.chunk.js.map",
+    "runtime~main.js": "/f2e-w1-tomato-clock/static/js/runtime~main.80b29f02.js",
+    "runtime~main.js.map": "/f2e-w1-tomato-clock/static/js/runtime~main.80b29f02.js.map",
+    "static/css/2.4f9c4df4.chunk.css": "/f2e-w1-tomato-clock/static/css/2.4f9c4df4.chunk.css",
+    "static/js/2.22a1fe03.chunk.js": "/f2e-w1-tomato-clock/static/js/2.22a1fe03.chunk.js",
+    "static/js/2.22a1fe03.chunk.js.map": "/f2e-w1-tomato-clock/static/js/2.22a1fe03.chunk.js.map",
+    "index.html": "/f2e-w1-tomato-clock/index.html",
+    "precache-manifest.f7985d406e7c8f345caa4d678fa7e43c.js": "/f2e-w1-tomato-clock/precache-manifest.f7985d406e7c8f345caa4d678fa7e43c.js",
+    "service-worker.js": "/f2e-w1-tomato-clock/service-worker.js",
+    "static/css/2.4f9c4df4.chunk.css.map": "/f2e-w1-tomato-clock/static/css/2.4f9c4df4.chunk.css.map",
+    "static/css/main.34de6062.chunk.css.map": "/f2e-w1-tomato-clock/static/css/main.34de6062.chunk.css.map",
+    "static/media/font-awesome.min.css": "/f2e-w1-tomato-clock/static/media/fontawesome-webfont.fee66e71.woff"
+  }
+}
