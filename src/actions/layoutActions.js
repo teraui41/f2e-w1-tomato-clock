@@ -14,3 +14,7 @@ export const setPeriodAction = payload => ({
   type: types.SET_PERIOD,
   payload
 })
+
+export const initSelectedIdAction = () => ({
+  type: types.INIT_SELECTED_ID
+})

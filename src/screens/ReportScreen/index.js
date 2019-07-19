@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Chart from './Chart';
+import Chart from "./Chart";
 import { Colors } from "../../constants/colors.config";
 import { Panel, PanelTitle } from "../../components/Panel";
 import { DataContainer, ContentContainer } from "../../components/Containers";
 
 const BasicMessage = ({ className, todo, done }) => {
-  return (
-      <div className={className}>{`To-do (${todo}) Done (${done})`}</div>
-  );
+  return <div className={className}>{`To-do (${todo}) Done (${done})`}</div>;
 };
 
 const TomatoCountContainer = styled.div`
@@ -40,7 +38,7 @@ const Message = styled(BasicMessage)`
   margin-left: 15px;
   position: absolute;
   background-color: #fff;
-  font-size: .4rem;
+  font-size: 0.4rem;
   color: #1e2253;
   font-weight: bold;
   padding: 8px 12px;
@@ -63,7 +61,15 @@ const Separator = styled.span`
 
 class ReportScreen extends React.PureComponent {
   render() {
-    const { activeId, period, todayTomatoes, todayTodoNumber, todayDoneNumber, weekTodoes } = this.props;
+    const {
+      activeId,
+      period,
+      todayTomatoes,
+      todayTodoNumber,
+      chartData,
+      todayDoneNumber,
+      weekTodoes
+    } = this.props;
     return (
       <ContentContainer contentId='report' activeId={activeId}>
         <DataContainer>
@@ -86,7 +92,7 @@ class ReportScreen extends React.PureComponent {
         <DataContainer>
           <Panel>
             <PanelTitle>Chart</PanelTitle>
-            <Chart period={period}/>
+            <Chart period={period} chartData={chartData} />
           </Panel>
         </DataContainer>
       </ContentContainer>

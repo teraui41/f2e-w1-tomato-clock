@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Clock from '../screens/ClockScreen';
-import { setPeriodAction } from '../actions/layoutActions';
+import { setPeriodAction, initSelectedIdAction } from '../actions/layoutActions';
 import { deleteTodoAction, updateTodoAction } from '../actions/todoActions';
 import { minusSecondAction, stopCountingAction, resetCountingAction } from '../actions/clockActions';
 
@@ -30,6 +30,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateTodo: payload => {
     dispatch(updateTodoAction(payload));
+  },
+  initSelectedId: () => {
+    dispatch(initSelectedIdAction())
   }
 });
 

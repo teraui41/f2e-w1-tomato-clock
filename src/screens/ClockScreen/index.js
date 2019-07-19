@@ -35,7 +35,7 @@ class ClockScreen extends React.PureComponent {
 
   componentDidUpdate(nextProps, nextState) {
     const { todoList, selectedId } = this.props;
-    if (selectedId !== nextProps.selectedId) {
+    if (!isEmpty(selectedId) && (selectedId !== nextProps.selectedId)) {
       const index = todoList.findIndex(todo => todo.get("id") === selectedId);
       const todoItem = todoList.get(index).toJS();
       this.setState(state => ({ ...state, index, ...todoItem }));
@@ -133,7 +133,10 @@ class ClockScreen extends React.PureComponent {
 
     deleteTodo({ index, ...todoItem, doneDate: moment().format('YYYY-MM-DD') });
 
+    this.setState(state=>({ state, ...defaultState }));
+
     this.initClock();
+    this.props.initSelectedId()
   };
 
   render() {

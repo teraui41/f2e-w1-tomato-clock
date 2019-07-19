@@ -16,6 +16,7 @@ const actionTypes = createTypes([
   "MINUS_SECOND",
   "STOP_COUNTING",
   "RESET_COUNTING",
+  "INIT_SELECTED_ID",
   "ADD_TODO_TO_DOING",
   "RESET_TODO_TO_DOING"
 ]);

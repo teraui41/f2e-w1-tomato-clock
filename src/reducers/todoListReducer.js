@@ -35,16 +35,19 @@ const removeTodo = (todo, payload) => {
   saveTodoList(updatedTodoList.toJS());
   saveDoneList(updatedDoneList.toJS());
 
-  return todo.merge(fromJS({ todoList: updatedTodoList, doneList: updatedDoneList }));
+  return todo.merge(
+    fromJS({ todoList: updatedTodoList, doneList: updatedDoneList })
+  );
 };
 
-const updateTodo = (todo, { index, ...payload}) => {
-  console.log("TCL: updateTodo -> payload", payload)
-  const updatedList = updateIn(todo, ['todoList', index], item => fromJS({ ...item.toJS(), ...payload }));
+const updateTodo = (todo, { index, ...payload }) => {
+  const updatedList = updateIn(todo, ["todoList", index], item =>
+    fromJS({ ...item.toJS(), ...payload })
+  );
 
-  saveTodoList(updatedList.getIn(['todoList']).toJS());
+  saveTodoList(updatedList.getIn(["todoList"]).toJS());
   return updatedList;
-}
+};
 
 export default function reducer(todo = todoListState, { type, payload }) {
   switch (type) {
@@ -58,6 +61,8 @@ export default function reducer(todo = todoListState, { type, payload }) {
       return addDone(todo, payload);
     case types.UPDATE_TODO:
       return updateTodo(todo, payload);
+    case types.INIT_SELECTED_ID:
+      return todo.merge({ selectedId: "" });
     case types.GET_TODO:
     case types.GET_DONE:
     case types.DELETE_DONE:
