@@ -147,7 +147,9 @@ class TodoSelector extends React.PureComponent {
     addToDoToDoing(id);
   };
 
-  addTodoToList = () => {
+  addTodoToList = e => {
+    e.preventDefault();
+
     const { content } = this.state;
 
     if (isEmpty(content)) {
@@ -190,6 +192,7 @@ class TodoSelector extends React.PureComponent {
           ))}
         </TodoList>
         <AddToDo>
+          <form onSubmit={this.addTodoToList}>
           <PlusIcon onClick={this.addTodoToList}>+</PlusIcon>
           <AddToDoInput
             type='text'
@@ -197,6 +200,7 @@ class TodoSelector extends React.PureComponent {
             onChange={this.onChange}
             value={content}
           />
+          </form>
         </AddToDo>
       </TodoSelectorContainer>
     );
