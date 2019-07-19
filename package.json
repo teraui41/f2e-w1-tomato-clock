@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "author": "Edmond.Wu, Shih-yu.Wu",
+  "homepage": "https://blog.teraui.com/f2e-w1-tomato-clock/",
   "dependencies": {
     "font-awesome": "^4.7.0",
     "immutable": "^4.0.0-rc.12",
