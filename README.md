@@ -1,68 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Pomodoro
 
-## Available Scripts
+2019 : 前端修練精神時光屋挑戰賽 - week 1 - 番茄鐘
 
-In the project directory, you can run:
+> 工作時間 25 分鐘，休息時間 5 分鐘。
 
-### `npm start`
+## 工作時間 - 白天
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![image](./doc/Pomodoro.JPG)
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## 接近工作時間 - 黃昏 (休息前5分鐘)
 
-### `npm test`
+![image](./doc/Pomodoro2.JPG)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 休息時間 - 夜晚
 
-### `npm run build`
+![image](./doc/Pomodoro3.JPG)
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+採用設計 : [Jesshsu](https://challenge.thef2e.com/user/1861?schedule=2495#works-2495)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 操作方式
 
-### `npm run eject`
+一定要建立一個代辦事項才可以加入番茄鐘，直接點擊開始是不會有反應的!
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+step 1. 在 Add new mission 中輸入代辦事項並按下 `enter` 加入，或按 `+` 號。
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+step 2. 按下 `播放` 按鈕開始計時。
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+step 3. 一個30分鐘的循環後可以點選 `Done` 或是 繼續按 `播放` 繼續循環。
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+step 4. 若按下 `Done` 代辦事項就會被標記為完成，並從列表消失。
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 功能介紹
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+主要功能為 TOMATO: 番茄鐘計時器，TODO LIST: 代辦列表，ANALYTIC: 分析報表。
 
-### Code Splitting
+#### TOMATO:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+能夠加入代辦事項以及開始番茄鐘計時。
 
-### Analyzing the Bundle Size
+#### TODO LIST:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+檢視完成清單以及待辦事項清單。
 
-### Making a Progressive Web App
+#### ANALYTIC:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+查看分析報表，數字為消耗幾顆番茄。
 
-### Advanced Configuration
+## 需優化
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+1. localStorage 管理，目前比數沒有上限，預計最多只存100個task
+2. 幹話大全
+3. 完成清單的番茄顯示

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "font-awesome/css/font-awesome.min.css";
 import Menu from "./containers/MenuContainer";
 import TodoSelector from "./components/TodoSelector";
+import GitStarButton from './components/GitStarButton';
 import ClockContainer from "./containers/ClockContainer";
 import ReportContainer from "./containers/ReportContainer";
 import TodoListContainer from "./containers/TodoListContainer";
@@ -19,6 +20,19 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+const Footer = styled.div`
+position: fixed;
+height: 20px;
+width: 100vw;
+bottom: 0px;
+padding: 15px;
+text-align: center;
+opacity: 0.3
+&:hover {
+  opacity: 1
+}
+`
 
 const Panel = styled.div`
   position: relative;
@@ -123,6 +137,9 @@ const App = props => {
           </ContentSelector>
         </Content>
       </Panel>
+      <Footer>
+        <GitStarButton />
+      </Footer>
     </Container>
   );
 };

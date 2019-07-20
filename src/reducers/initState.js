@@ -3,7 +3,7 @@ import { INIT_DAY_TIME } from '../constants/common';
 import { getDoneList, getTodoList } from '../utils/localStorage';
 
 export const layoutState =fromJS({
-  period: 'day',
+  period: 'night',
   activeId: 'clock'
 })
 
